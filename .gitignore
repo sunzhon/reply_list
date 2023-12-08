@@ -1,0 +1,16 @@
+*.pdf
+*.aux
+*.log
+*.png
+*.svg
+*.bbl
+*.blg
+*.out
+*.soc
+*.txt
+*.fdb_latexmk
+*.cpy
+*.fls
+*.loc
+
+

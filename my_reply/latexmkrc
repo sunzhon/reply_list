@@ -1,0 +1,31 @@
+# equivalent to `latexmk -xelatex`
+
+#$pdflatex = "xelatex %O %S";
+#$pdf_mode = 5;
+#$dvi_mode = $postscript_mode = 0;
+
+#$xelatex = "xelatex -file-line-error -halt-on-error -interaction=nonstopmode -no-pdf -synctex=1 %O %S";
+#$xdvipdfmx = "xdvipdfmx -E -o %D %O %S";
+#$bibtex_use = 1.5;
+
+
+# .latexmkrc starts
+#$pdf_previewer = 'open -e evince';
+#$pdflatex = "pdflatex -synctex=1 -interaction=nonstopmode";
+# @generated_exts = (@generated_exts, 'synctex.gz');
+# $cleanup_mode = 1;
+# $preview_continuous_mode = 1;
+#@default_files = ('comments.tex');
+# .latexmkrc ends
+
+
+add_cus_dep( 'tex', 'aux', 0, 'makeexternaldocument' );
+
+sub makeexternaldocument {
+    if (!($root_filename eq $_[0]))
+    {
+        system( "latexmk -cd -pdf \"$_[0]\"" );
+    }
+}
+
+@default_files = ('reply_list.tex');

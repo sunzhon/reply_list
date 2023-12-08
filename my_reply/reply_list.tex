@@ -1,0 +1,1119 @@
+﻿\documentclass{article}
+\usepackage{url,lineno, microtype,subcaption}
+\usepackage{amsmath}
+\def\papertitle{Revision notes for paper ID: Sensors-62825-2023}
+
+\def\authors{Tao Sun, Tian Tan，Dongxuan Li, Markert Bernd, Peter B. Shull, and Bamer Franz}
+
+\usepackage{multirow}
+\usepackage{tabularx}
+
+\usepackage{rotating}
+
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{array}
+\usepackage{booktabs} %调整表格线与上下内容的间隔
+\usepackage{enumerate}
+%\usepackage{url}
+
+\usepackage{breakurl}
+\usepackage[hidelinks]{hyperref}
+\usepackage[table]{xcolor}
+\usepackage{xr}
+
+\usepackage{changes}
+
+% 条件编译
+\usepackage{ifthen}
+\newif\ifreplylist\replylisttrue % manuscript 条件变量
+
+% Rename the figure, table label name for \auoref
+\renewcommand{\figureautorefname}{Fig.}
+\renewcommand{\tableautorefname}{Table}
+\renewcommand{\sectionautorefname}{Section}
+\renewcommand{\subsectionautorefname}{Subsection}
+
+
+% A board for Copy and paste 
+\usepackage{clipboard}
+%\newclipboard{myclipboard_2}
+
+\makeatletter
+\newcommand*{\addFileDependency}[1]{% argument=file name and extension
+\typeout{(#1)}
+\@addtofilelist{#1}
+\IfFileExists{#1}{}{\typeout{No file #1.}}
+}
+\makeatother
+
+\newcommand*{\myexternaldocument}[1]{%
+\externaldocument{#1}%
+\addFileDependency{#1.tex}%
+\addFileDependency{#1.aux}%
+}
+
+% specify the file that for cross-reference
+\myexternaldocument{./../../Manuscripts/main} 
+%\myexternaldocument{./../../SupplementaryMaterial} 
+
+%%%%%%%%%%%%%%%%%
+
+% declare the figure path and extension name
+%\usepackage[outdir=./../../Figures/]{epstopdf}
+%\usepackage[outdir=./../../Figures/]{epstopdf}
+\usepackage[outdir=./]{epstopdf}
+\graphicspath{{./../../Figures/EPS/}}
+\DeclareGraphicsExtensions{.pdf,.eps,.pdf}
+
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\input{../templates/AR_to_RC.tex}
+
+We would like to thank the associate editor and reviewers for their thorough review and comments, as well as for their substantial praise of our work. Here we provide our replies to the comments. The reviewers' comments are shown in blue and our response is in black. The modified and added content of the revised manuscript is shown in red.
+
+
+(\textit{Note that the citation numbers shown in this reply list are based on the references provided on the last page of this document. The numbers might differ from those in the main manuscript. However, the paper's references are the same.})
+
+
+
+\section{Reviewer \#1}
+
+
+
+\RGC This paper investigated the influence of the number of subjects and number of trials on knee moment estimation via deep-learning models. The main purpose is to present a data augmentation approach, which is important for training deep learning models. The introduction well described the motivation and the methods are clear. But in the results, the structure is not very clear, there are some sentences belong to methods and some sentences belong to discussion, which can be improved. Besides, some specific issues need the authors' attention.
+
+
+\AR ss
+
+\RC 1. Can the presented data augmentation method be applied to other biomechanical parameters estimation during other activities? If it is, it will be useful.
+
+
+\RC 2. Knee Moment Estimation via Deep-learning Models and Wearable IMUs during Drop Landings, the significance is
+
+\RC 3. In the abstract, “they lack explicit investigation”, “they” is not clear, please check the whole paper for grammar issues.
+
+\AR We have corrected the expression as:
+ “
+Data quantity and diversity are crucial in constructing training datasets for deep learning models; however, in the context of biomechanical variable estimation models during drop landings, the influence of the dataset size lacks explicit investigation.
+”
+
+\RC 4. In the abstract figure, “Subjects and trials needed for drop landings?” is not clear, Does it mean “how many subjects and trials are needed for Knee Moment Estimation during drop landings”? or something else? Besides, the font size of some words is too small.
+
+\AR We have corrected the sentence expression in the abstract graph and adjust the font size of figure:
+
+“
+how many subjects and trials are needed for Knee Moment Estimation during drop landings.
+“
+
+\RC 5. In the abstract, the font of “R 2 , 0.4 BW · BH of” is strange.
+
+\AR $0.85$ of R-squared, $0.4$ body weight $\times$ body height of RMSE, and $0.1$ of rRMSE}
+
+\RC 6. In Fig 1, there seems some problem. “Ground-truth” is overlapped by figures, and the aspect ratio of some subfigures is weird.
+
+
+\RC 7. In Fig. 7., why the leftmost column below 0.2? Fig. 6. And Fig. 7 seems to convey similar results.
+
+
+\RC 8. Page 11, “D. Limitations” Firstly, Secondly, should be First, Second.
+
+\AR Thank you for pointing these grammar error out, we have revised the words in the revised manuscript.
+
+
+
+
+
+\section{Reviewer \#2}
+
+
+
+\RGC Comments:
+The overall contribution appears limited, and there are issues with organization and writing. The introduction lacks sufficient motivation and clarity regarding the goals. Furthermore, the novelty of this study is restricted as it solely employs LSTM models and a limited number of augmentation approaches. 
+
+
+Other comments are as follow:
+
+\RC 1. More argument is required to support  the statement of “Our hypothesis is that the performance of biomechanical variable estimation models cannot be continuously improved by merely increasing the number of subjects and trials.” (line 34-36, Page 2)
+
+\RC 2. The meaning of "models" in this sentence is unclear. Please provide clarification for the statement: “Typically, these models have limited complex structures as they are designed to be executed on portable devices with low computation resources, such as laptops or embedded devices.” (lines 36-39, Page 2).
+
+\RC 3. Further arguments are needed to support the assertion that “there must exist a baseline number of subjects and a minimum trial number for each subject in the dataset collection of the estimation models to achieve acceptable performance” (Lines 40-42, Page 2).
+Why did this work especially focus on KEM estimation?
+
+\AR 预测VGRF 或者 joint angles
+
+\RC 4. There are many works focusing on tackling data scarcity. However, this paper only explores data augmentation. Please introduce more related works in this field.
+
+\AR 讨论其他数据增强方法 或者强调本人的研究重点在于 多少subject 和多少trial 是合适的， 数据增强的方式
+
+\RC 5. Why did this work especially focus on investigating the effects of data augmentation?
+
+\RC 6. The literature review about data augmentation approaches needs to be updated. Moreover, many state-of-the-art augmentation techniques fo waveform signals should be added in this work for the comparison.
+
+\RC 7. Why did this work only propose LSTM-based models instead of other deep learning models?
+
+
+
+\AR CNN 和 Transformation. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Comparison with literature: Currently, the comparison is presented at the end of the results section as an afterthought and the details are not clearly mentioned. Kindly add details of the algorithms used; for acceleration similarity: equations of the linear transfer, and for linear regression: details about training. Also, it is not clear, which imu configuration was used. The discussion section seems to be otherwise sufficient.
+
+\AR Thank you for this comment. We have added more details of the acceleration-similarity and linear regression models in the corresponding subsection of the revised manuscript as follows:
+
+\Copy{other_methods}{
+    \begin{revised}[Results]
+        We compared the proposed method (modular LSTM model) with two existing approaches: acceleration-similarity model (a type of physical model) and linear regression model (a type of machine learning model). For the acceleration-similarity model, the tibial acceleration that measured by a wearable IMU placed on the shank was used to estimate the vGRF via a linear transfer. As an example, the acceleration of the IMU on the right shank was used to predict the right leg vGRF. The acceleration-similarity model can be expressed as:
+        \begin{equation}
+            F_v = w_1 \cdot A_x + w_2 \cdot A_y + w_3 \cdot A_z + b
+            \ifreplylist
+            \tag{\ref{equ:acc_simi_model}}
+            \else
+            \label{equ:acc_simi_model}
+            \fi
+        \end{equation}
+        \noindent where $F_v$ represents the estimated vGRF, $A_{x,y,z}$ are the tibial accelerations along with its three directions. $w_{1,2,3}$ and $b$ are scaling and offset parameters whose values were calculated by a regression algorithm\footnote{The implementation of the acceleration-similarity model can be found at \url{https://gitlab.com/sunzhon/realtime_drop_landing_estimation.git.}}.
+
+        For the linear regression model, we referred to Chaaban et al. \cite{RN_Chaaban2021_combining} who elaborated on features extracted from 3D accelerations and 3D angular velocities of two IMUs that were placed on the thigh and shank. The features were fed into a stepwise linear regression model to estimate the target variables. The features includes the maximum/minimum values of acceleration and angular velocities and their statistical indexes. A leave-one-out cross-validation was performed on the dataset that was split into 10 folds. The model was trained on 9 folds and tested on the remaining fold and repeated this process across each fold.
+        A paired t-test was used to determine if the mean $R^2$ of the modular LSTM model was significantly higher than that of the acceleration-similarity and linear regression models (\autoref{fig:fig_11_exp_results_comparison}). The results showed that the modular LSTM model outperformed the linear regression model in KEM estimation and the acceleration-similarity in vGRF estimation. 
+
+        \begin{figure}[htbp]
+            \includegraphics[width=0.92\linewidth]{Fig_11_exp_results_comparison}
+            \ifreplylist
+            \caption*{Fig. \ref{fig:fig_11_exp_results_comparison}
+            Estimation accuracy comparison of our proposed method (modular LSTM model) with other two existing methods: acceleration-similarity \cite{RN_predicting_impact_Andrew2012} and linear regression model \cite{RN_Chaaban2021_combining}. Note that the acceleration-similarity model was only able to estimate vGRF using our collected IMU data, while the accuracy of the linear regression model comes from \cite{RN_Chaaban2021_combining}.
+            }
+            \else
+            \caption{
+                Estimation accuracy comparison of our proposed method (modular LSTM model) with other two existing methods: acceleration-similarity \cite{RN_predicting_impact_Andrew2012} and linear regression model \cite{RN_Chaaban2021_combining}. Note that the acceleration-similarity model was only able to estimate vGRF using our collected IMU data, while the accuracy of the linear regression model comes from \cite{RN_Chaaban2021_combining}.
+            }
+            \label{fig:fig_11_exp_results_comparison}
+            \fi
+        \end{figure}
+
+    \end{revised}
+}
+
+
+
+\RC 2. About the real-time aspect. The very brief text in the introduction doesn’t yet strengthen the need for real-time nature of the algorithm. For instance, providing real time feedback on drop landings is unrealistic as it is a very short instance of impact. This is too fast any human to visualize, process, and act on. Similarly, with assistive devices or artificial limbs, the window for control is too short, and minor errors may result in an unstable landing and fall. Please add a few sentences in the discussion as to why using a real-time version of this algorithm is important.
+
+\AR  Yes, you are right. Humans may not be able to make movement adjustments in real time (within a short period (e.g., 10 ms)) during a drop landing task due to their physical and sensory limitations. However, real-time estimation of biomechanical variables can still be particularly important for clinicians and researchers. By the real-time estimations, the clinicians and researchers can online identify potentially harmful landing loads that can lead to injury and to confirm the development of more effective injury prevention and rehabilitation strategies. Subjects can receive biofeedback in real time to recognize their landing status and they can adjust their landing skills in consecutive landing trials. Although the accuracy and reliability of the real-time estimation still need to be further validated when implementing the estimation model in assistive devices or artificial limbs, efforts in this work would be less awkward for future practical implementation.
+
+
+We have added this information in the Discussion section of the revised manuscript as follows:
+
+\Copy{real_time_explan2}{
+\begin{revised}[Discsussion]
+
+    During a drop landing task, humans may not be able to make adjustments in real time (within a short period, such as 10 ms) due to humans' physical and sensory limitations. However, real-time estimation of biomechanical variables can still be important for clinicians and researchers to identify potentially harmful landing loads that can lead to injury and develop effective injury prevention and rehabilitation strategies. Subjects can receive biofeedback to recognize their landing status online, which can help them adjust their landing technique in consecutive trials. Also, although further validation of the estimation accuracy and reliability is needed before applying the proposed method in assistive devices or artificial limbs, efforts in this work were made to pave the way toward to practical applications.
+
+\end{revised}
+}
+
+
+
+\RC 3. Page 3: What do you mean by ‘noise of acceleration’? Kindly clarify, since acceleration is a physical entity. You probably are referring to sensor noise?
+
+\AR Yes, we mean the sensor measurement induced the noisy signals in acceleration. We have modified the expression in the revised manuscript as follows:
+
+\Copy{sensor_noise}{
+    \begin{revised}[Methods]
+        In the presence of sensor noise in acceleration, the identified start, landing, and end moments of the ROI may deviate from their true positions, thereby leading to an offset in the detected ROI. However, the threshold coefficients ($\alpha$ and $\beta$) offer sufficient tolerance for the effect of the noise. As a result, the accuracy of the ROI detection was ensured.
+    \end{revised}
+}
+
+
+\RGC Good luck with the final changes!
+
+
+\section{Reviewer \#2}
+
+\RGC Comments to the Corresponding Author.
+
+\RC My previous comment was not addressed completely. The authors do provide the RMSE and rRMSE, but no comparison of these error metrics is included in the discussion, although this metric is more likely to provide informative insights for ACL ruptures (which is still the goal of the work).
+
+
+
+%%%2. Is the accuracy of this work comparable to related work? This should be discussed to show the performance of the work. In the “Estimation Accuracy” section of the Discussion, it seems that only some results and numbers are repeated while no direct comparison is presented. Does the proposed method give better results in terms of the curves or peak values?
+
+\AR Yes, you are right, the estimation errors should also be focused on and discussed since they affect the reliability of the estimations for ACL applications. We have now added more content about the estimation errors in the discussion section as below:
+
+\Copy{dis_rmse_acl}{
+\begin{revised}[Discusssion]
+
+    From the perspective of estimation errors, our estimations yielded relatively high RMSE values. The RMSE (mean$\pm$SD) of the vGRF (KEM) during single- and double-leg drop landings were $0.25\pm0.13$ BW and $0.18\pm0.06$ BW ($0.54\pm0.18$ BW$\cdot$BH and $0.38\pm0.1$ BW$\cdot$BH), respectively (\autoref{tab:tab_overall_accuracy_all_cases}). In a prior study \cite{RN_Chaaban2021_combining}, the mean RMSE of the peak vGRF (KEM) during double-leg landings was reported to be 0.21 BW (0.027 BW$\cdot$BH). It suggested that their estimation results were acceptable since the RMSE values were smaller than clinical differences ($0.24$ BW and 0.035BW$\cdot$BH). Here, the clinical difference indicates the vGRF or KEM difference between subjects with and without ACL reconstruction. Our model was developed to estimate the entire profile of the target variables during a drop landing period, in which the errors of the profile estimation were larger than the clinical difference. Therefore, future work should also aim to reduce the RMSE values to meet the requirements for applications of peak value estimation.
+\end{revised}
+}
+
+
+\RC P.9 L16 ff  “Thus, the presented model has the potential to detect this difference with reasonable probability.”
+Following your arguments, a distinction could be made between uninjured and injured trials, but it is not clear how it can be deduced that the model used to predict the vGRF is accurate enough. In this context Figure 5. Axis label is GRF but should be vGRF.
+
+\AR The estimation accuracy has a high probability to distinguish between landing trials of injured and uninjured subjects in some situations. 
+
+The RMSE of the vGRF estimated by our model during single- and double-leg drop landings were $0.25\pm0.13$ BW and $0.18\pm0.06$ BW, respectively (see \autoref{tab:tab_overall_accuracy_all_cases}).The $95\%$ limits of agreement (LoA, mean-2SD $\sim$ mean+2SD) between the estimated vGRFs and their ground truths were $-0.01\sim 0.51$ BW and $0.06\sim 0.3$ BW, respectively. The maximum errors of the $95\%$ LoA were observed to be $0.51$ BW and $0.3$ BW for single- and double-leg drop landings, respectively.
+
+Lin et al. \cite{RN_ACL_lin2012biomechanical} reported that the difference in mean vGRF between injured and uninjured male subjects' landing trials was $0.95$ BW (during double-leg landings). The difference exceeds the maximum estimation error (0.51BW). Therefore, if the difference in estimated vGRFs between two trials exceeds $0.95 + 0.51$ BW, the trial with a higher vGRF is likely to be associated with injury. Hence, there is a high probability that the estimated vGRFs can distinguish between injured and uninjured trials in the situation. It is important to note that the estimation accuracy is not enough to distinguish any landing trials.
+
+The legend in Fig. 5 (Fig. \ref{fig:fig_11_exp_results_comparison} in the main manuscript) was wrong. It should be vGRF rather than GRF. We have corrected it in the revised manuscript.
+
+
+We have added this information in the revised manuscript as follows:
+
+
+\Copy{acc_enough}{
+    \begin{revised}[Discussion]
+        In our study, the RMSE of the vGRF estimated by our model during single- and double-leg drop landings were $0.25\pm0.13$ BW and $0.18\pm0.06$ BW, respectively (\autoref{tab:tab_overall_accuracy_all_cases}). The $95\%$ limits of agreement (LoA, mean-2SD $\sim$ mean+2SD) between the estimated vGRFs and their ground truths were $-0.01\sim 0.51$ BW and $0.06\sim 0.3$ BW, respectively. The maximum errors of the $95\%$ LoA were observed to be $0.51$ BW and $0.3$ BW for single- and double-leg drop landings, respectively. The maximum estimation errors were less than $0.95$ BW. Therefore, if the difference in estimated vGRFs between two trials exceeds $0.95 + 0.51$ BW during double-leg drop landings, the trial with a higher vGRF is likely to be associated with injury. Hence, there is a high probability that the estimated vGRFs can distinguish between injured and uninjured trials in the situation. It is important to note that the estimation accuracy is not enough to distinguish any landing trials.
+    \end{revised}
+}
+
+
+
+
+\RC Authors used the time (present and past) inconsistently throughout the manuscript and I would suggest revising it.
+
+\AR Thank you very much for your patience as we improve our English writing. We have now double-checked the revised manuscript and asked a professional editor to proofread it. 
+
+
+\RGC Furthermore, the language and writing of the manuscript need to be enhanced, especially in the newly added paragraphs. In the following you will find some examples:
+
+\RC P.1 L.9  consider rephrasing: “and make conscious corrections immediately”
+
+\AR We have now modified it in the revised manuscript.
+
+\RC P.1 L.15 “ this approach can be called  “acceleration –similarity model “  instead of " this approach can be called as the acceleration-similarity"
+
+\AR We have now revised this as follows:
+\begin{revised}[Introduction]
+    this approach can be called "acceleration-similarity model"
+\end{revised}
+
+\RC P.1 L 16  similar profile “as” not with
+
+\AR We made the suggested change in the revised manuscript.
+
+
+\RC P1. L22 lower limbs --> plural
+
+\AR We made the suggested change in the revised manuscript.
+
+\RC P.1 L. 24-30 twice "precise" mentioned --> what does precise mean in this context?
+
+\AR The first "precise" should be "accurate". It means the kinematics parameter values and anthropometric data should be accurate otherwise the segment-link models could not perform accurate estimations. It is a mistake to use the second "precise", which should be removed. Thus, the sentences have been revised as follows:
+
+\begin{revised}[Introduction]
+    With accurate kinematics parameter values (derived from IMU sensors) and anthropometric data (i.e., mass, center of mass, radii of gyration ratios, and inertia \cite{RN_adjustment_Deleva1996, RN_estimation_grf_momnet_Karatsidis2016}), the segment-link models can exhibit promising estimation accuracy, though kinematics parameter values are ofen determined from older data sets \cite{RN_adjustment_Deleva1996}.
+\end{revised}
+
+
+
+\RC P3. L 11 ff – consider rephrasind as the sentence “Even though the actual landing moment must be included in the ROI since the threshold coefficients ($\alpha$ and $\beta$) make the ROI enough tolerance for the noise.” Is not clear.
+
+\AR The sentence had a unclear expression. In the sentence, we want to say that the threshold coefficients ($\alpha$ and $\beta$) offer sufficient tolerance for the ROI detection. To be clear, we have revised the sentence as follows:
+
+\Paste{sensor_noise}
+
+
+
+\RC P.50 L 50 were “performed” in TensorFlow
+
+\AR We have corrected this in the revised manuscript as follows:
+
+\Copy{method_keras}{
+    \begin{revised}[Methods]
+        Low-level operations were performed in TensorFlow (version 2.5.0), which interfaced with Keras.
+    \end{revised}
+}
+
+
+\RC P.3 L24 integrate details in the previous senstence e.g. “ Thus eight wearable IMUs (Xsens Technologies B.V., Enschede, The Netherlands) were placed …
+
+\AR We have integrate the two sentences as follows:
+
+
+\Copy{method_xsen}{
+    \begin{revised}[Methods]
+        Thus, eight wearable IMUs (Xsens Technologies B.V., Enschede, The Netherlands) were placed on the segments to collect their accelerations and angular velocities. 
+    \end{revised}
+}
+
+\RC P.3 L.25 consider rephrasing --> The values were as features
+
+\AR We revised this as follows:
+
+\Copy{input_feature}{
+    \begin{revised}[Methods]
+        The values were as features by the model to make estimations for the vGRF and KEM of the leg (Fig. \ref{fig:fig_exp_setup_markers_imus} (b)).
+    \end{revised}
+}
+
+
+\RC P.4 L4. consider rephrasing --> e.g. to increase the generalisability of the data set
+
+\AR We have rephrased the sentence as follows:
+
+\begin{revised}[Methods]
+    to increase the generalisability of the data set
+\end{revised}
+
+\RC P.4 L9 From a safety aspect….
+
+\AR We have rephrased the sentence as follows:
+
+\begin{revised}[Methods]
+    From a safety aspect, 
+\end{revised}
+
+\RC P.7 L21 please rephrase “so only adjacent conditions were needed to do the test.”
+
+\AR We have rephrased the sentence as follows:
+
+\begin{revised}[Results]
+    To perform the test, the IMU locations were sorted incrementally according to their mean and median accuracy, as shown in the figure. Consequently, it was only necessary to test adjacent conditions.
+\end{revised}
+
+\RC P.7 L 31 rephrase the 2 sentences as they are not clear
+
+\AR We have rephrased the sentences as follows:
+
+\Copy{imu_config_priority}{
+    \begin{revised}[Results]
+        IMU configuration strategies that exhibit high average estimation accuracy and low variance were assigned higher priority. In practical applications, these high-priority strategies should be selected first.
+    \end{revised}
+}
+
+
+\RC P.7 L44 right leg tibia --> right lower leg or right tibia
+
+\AR We modified that.
+
+\RC P.7 L45 do not start the sentence with and “And”
+
+\AR We removed the "And" in the revised manuscript.
+
+\RC P.7 L11 “set to apply” --> set to be applied
+
+\AR We corrected that in the revised manuscript.
+\begin{revised}[Results]
+    set to be applied
+\end{revised}
+
+\RC P.9 L14 below the risky threshold of 4BW
+
+\AR We corrected that as follows:
+
+\begin{revised}[Discussion]
+    below the risky threshold of 4 BW.
+\end{revised}
+
+\RC P.8 L44 “great”  sounds subjective please rephrase the sentence
+
+\AR We have rephrased the sentence as follows:
+
+\begin{revised}[Results]
+    After excluding outliers, it was found that the vGRF estimation achieved outstanding performance during single-leg drop landing when using the model with an optimal IMU configuration.
+\end{revised}
+
+\RC P8 L53  a correlation of less than 0.5 is rather considered moderate than strong
+
+\AR We have corrected this in the revised manuscript as follows:
+
+\begin{revised}[Discussion]
+    have a moderate Pearson correlation ($r=0.469$)
+\end{revised}
+
+
+
+\section{Reviewer \#3}
+
+\RGC Comments to the Corresponding Author. The authors have fully addressed my comments.
+
+\AR Thank you very much for your agreement.
+
+
+%\section{Reviewer \#1}
+%
+%\RGC Comments to the Corresponding Author. Thank you very much for sharing your extensive work. It is well researched and explained. 
+%
+%\RC Although, the work has merit, the paper does not strengthen the arguments needed to select the approach taken. It is not clear why LSTM is used, how it performs against the traditional physical model approach, and how it adds to the scientific community as a whole. I would suggest rewriting the manuscript, especially the Introduction and Discussion and resubmitting it after showing its performance with physical models.
+%
+%\AR We have rewritten the Introduction and Discussion sections in which we added a comparison of a typical physical method and our proposed machine learning method. Our revision can be categorized into three points below:
+%
+%\begin{itemize}
+%
+%  \item Introduced physical models in Introduction section.
+%  \item Performed comparison of our proposed method and two other existing methods: acceleration-similarity and linear regression models.
+%  \item Discussed the proposed method with two existing methods in Discussion section. 
+%
+%\end{itemize}
+%
+%
+%
+%
+%\RGC Please find specific actionable comments below.
+%
+%\RC 1. Much of the Introduction talks about machine learning methods. It is not clear, why physical approaches to estimate vGRF is not considered. This is a straight forward approach as simple Newton's laws could help estimate vGRF since you have 1-8 IMU sensors. It is more useful for the scientific community to see how your methods performed with respect to other studies that estimate the vGRF and KEM during drop landing using simple physical models. This can be done by comparing with literature as well as applying physical models to your dataset and showing how well the LSTM-based approach performs in terms of accuracy and speed. 
+%
+%\textcolor{blue}{My comment is also strengthened with the similarities between figure 2 (which shows acceleration) and actual GRF in figure 5. So, is it necessary to have a complex model? Also, it is not really clear why LSTM is chosen and why not other models for estimating real time?}
+%
+%
+%\AR Our reply to this comment includes three points below:
+%
+%
+%\begin{itemize}
+%
+%  \item Comparison of the physical approaches and machine learning: Some existing research utilized physical models combined with IMU data to estimate biomechanical variables in various sports \cite{RN_estimation_joint_force_Logar2015,RN_estimation_grf_momnet_Karatsidis2016,RN_3dEstimation_grf_Yang2015,RN_predicting_impact_Andrew2012,RN_comparison_tpa_ZHANG201653, RN_effect_strike_pattern_Laughton2003,RN_Tan2021}. These physical models could be categorized into two types, including segment-link and acceleration-similarity models. 
+%
+%    Some work built the human body or lower extremity as segment-link models. The models can be used to estimate the vGRF and joint moments during different sports, such as walking and ski jumping \cite{RN_estimation_joint_force_Logar2015,RN_estimation_grf_momnet_Karatsidis2016,RN_3dEstimation_grf_Yang2015}. The segment-link models simplify the human body or lower limb as rigid links without considering the detailed and individual segment characteristics. The segment-link models' kinetics derived from Newton-Euler equations were used to represent human body kinetics. The models are straightforward and understandable for estimating human body biomechanics, including vGRF and joint moments. With precise kinematics parameter values (derived from IMU sensors) and anthropometric data (i.e., mass, center of mass, radii of gyration ratios, and inertia \cite{RN_adjustment_Deleva1996,RN_estimation_grf_momnet_Karatsidis2016}), the physical models exhibit promising estimation accuracy. 
+%
+%    However, the implementation of segment-link models has two drawbacks, which reduce the convenience of in-field applications. First, the IMU placement for physical model implementation requires an additional calibration procedure to align sensors to their attached segments. Estimation of segment kinematics, such as joint angles, using a physical model relies on the relative orientations of the sensors and segments. Typically, a static or functional calibration was employed to obtain the relative orientations. The calibration requires participants to perform static calibration trials or specific movements guided by a tutor. These procedures increase the complexity of the physical model implementation. Second, to calculate physical model kinetics, the anthropometric data of each related segment are required. The data are typically used based on average data recorded by Del Eval et al. \cite{RN_adjustment_Deleva1996} in 1996. To obtain high estimation accuracy, the different anthropometric data between specific participants cannot be ignored. Therefore, the estimation accuracy of a link-segment model dropout significantly if without precise anthropometric data.
+%
+%    In addition to segment-link models, acceleration-similarity models were used to estimate peak loading rate \cite{RN_predicting_impact_Andrew2012,RN_comparison_tpa_ZHANG201653, RN_effect_strike_pattern_Laughton2003,RN_Tan2021}. The principle of the acceleration-similarity model is that tibial acceleration has similar profiles with ground reaction force. Acceleration-similarity model is easy to operate and relies on fewer sensors (only one IMU ). However, the models have very low accuracy (correlation coefficient is around $0.44-0.66$ \cite{RN_Tan2021}) while the correlation coefficient obtained by machine learning models is higher than $0.9$. For the applications of retraining programs of intervention, highly accurate estimation is necessary \cite{RN_gait_retain_Richards2018}. 
+%
+%Compared to the physical models (i.e., segment-link and acceleration-similarity models), the data-driven models do not require elaborate sensor-segment calibration procedures and anthropometric data. Besides, the data-driven models can achieve high estimation accuracy using enough training datasets. The limitations of the data-driven models are 1) relying on the massive labeled training dataset and 2) lacking explainable. The data-driven models can not explain the complex relationship between segment inertial information (accelerations and angular velocities) and segment kinetics (vGRF and joint moments).
+%
+%    \item Performance comparison with other existing research: We compared the performance of our proposed model (modular LSTM model) with acceleration-similarity \cite{RN_predicting_impact_Andrew2012} and stepwise linear regression models \cite{RN_Chaaban2021_combining}. An acceleration-similarity model with our collected IMU data output the estimated vGRF. The results of the linear regression model were obtained from \cite{RN_Chaaban2021_combining}. Our proposed modular LSTM model outperforms the other two methods in the aspect of estimation accuracy ($R^2$) (\autoref{fig:fig_11_exp_results_comparison}).
+%
+%    \item The reason for using the modular LSTM model: The biomechanics of the human body is a complicated and highly dynamic system with multiple-input and multiple-output (MIMO) systems. The relationship between target variables (GRF and especially for KEM) and the inertial status of segments is nonlinear and dynamic. A linear model cannot well map the kinetics according to linear accelerations and angular velocities (measured by IMUs) of segments. As one architecture of recurrent neural network (RNN), long short-term memory (LSTM) has feedback connections and could present a much better performance in the time series processing with long dependency than the fully-connected neural network. Besides, it could also avoid difficulties modeling the complex MIMO system \cite{RN_lstm_based2020}. Also, many existing works have demonstrated that LSTM neural network is powerful to handle time-series problems in biomechanics \cite{RN_lstm_based2020,RN_tan2022_imu_smartphone,RN_Rapp2021_estimation_of_kinematics}.
+%
+%  \end{itemize}
+%
+%
+%
+%  We have added the literature comparison of the physical model and the data-driven model in the Discussion section of the revised manuscript as below:
+%
+%  \Copy{intro_other_methods}{
+%    \begin{revised}[Introduction]
+%      Some physical models have been developed to estimate biomechanical variables. As an inexpensive and widespread assessment method, tibial acceleration was suggested as a surrogate measure of impact loading. This approach can be called as the acceleration-similarity model because the acceleration value has a similar profile with the loading rate \cite{RN_predicting_impact_Andrew2012, RN_comparison_tpa_ZHANG201653, RN_effect_strike_pattern_Laughton2003, RN_Tan2021}. Although the acceleration-similarity model is easy to operate and relies on fewer sensors (e.g., a single IMU), the approach has low accuracy (correlation coefficient is around $0.44-0.66$ \cite{RN_Tan2021}). To achieve high estimation accuracy, complex physical models, i.e., segment-link models, have been built for different sports, such as walking and ski jumping \cite{RN_estimation_joint_force_Logar2015, RN_estimation_grf_momnet_Karatsidis2016, RN_3dEstimation_grf_Yang2015}. The segment-link models simplify the human body or lower limb as rigid links without considering detailed and individual segment characteristics. The segment-link models' kinetics derived from Newton-Euler equations were used to represent human body kinetics. With precise kinematics parameter values (derived from IMU sensors) and anthropometric data (i.e., mass, center of mass, radii of gyration ratios, and inertia \cite{RN_adjustment_Deleva1996, RN_estimation_grf_momnet_Karatsidis2016}), the segment-link models exhibit promising estimation accuracy. However, the precise kinematics parameter values are typically set based on average data recorded by Del Eval et al. \cite{RN_adjustment_Deleva1996} in 1996.
+%    \end{revised}
+%  }
+%
+%  \Copy{results_comp}{
+%    \begin{revised}[Results]
+%
+%      \subsection{Comparison with acceleration-similarity and linear regression models}
+%
+%      We compared the proposed method (modular LSTM model) with two existing approaches: acceleration-similarity model (a type of physical model) and linear regression model(a type of machine learning model) (\autoref{fig:fig_11_exp_results_comparison}). For the acceleration-similarity model, the tibial acceleration was mapped to estimate the vGRF via a linear transfer. As an example, the acceleration of the IMU on the right leg tibia was utilized to predict the right leg vGRF. For the linear regression model, we referred to Chaaban et al. \cite{RN_Chaaban2021_combining} who elaborated on features extracted from multiple IMU data. And the features were fed into stepwise linear regression models to estimate the target variables. A paired t-test was used to determine if the mean $R^2$ of the modular LSTM model was significantly higher than that of the acceleration-similarity and linear regression models. The modular LSTM model outperformed the linear regression model in KEM estimation and the acceleration-similarity in vGRF estimation. 
+%
+%      \begin{figure}[htbp]
+%        \includegraphics[width=0.95\linewidth]{Fig_11_exp_results_comparison}
+%        \caption{Estimation accuracy comparison of our proposed method (modular LSTM model) with other two existing methods: acceleration-similarity \cite{RN_predicting_impact_Andrew2012} and linear regression model \cite{RN_Chaaban2021_combining}. Note that the acceleration-similarity model was only able to estimate vGRF using our collected IMU data, while the accuracy of the linear regression model comes from \cite{RN_Chaaban2021_combining}.}
+%        \label{fig:fig_11_exp_results_comparison}
+%      \end{figure}
+%    \end{revised}
+%  }
+%
+%
+%
+%  \Copy{diss_comp}{
+%    \begin{revised}[Discussion]
+%      The proposed modular LSTM model outperformed the other two drop landing estimation models: acceleration-similarity and linear regression. Greenhalgh et al. \cite{RN_predicting_impact_Andrew2012} explored that the peak instantaneous vertical loading rates and peak tibial acceleration have a strong Pearson correlation ($r=0.469$). Tibial acceleration has been used to estimate the loading rate, in which the correlation coefficient is around $0.44-0.66$ \cite{RN_Tan2021}. We utilized the tibial acceleration to estimate the vGRF profile of a landing period. The correlation coefficient ($R^2=0.45\pm0.04$) is similar to the current results. The accuracy of the accelerations-similarity model is relatively low compared to the accuracy of the machine learning models (linear regression and modular LSTM models). Highly accurate estimation is necessary for the applications of retraining programs of intervention \cite{RN_gait_retain_Richards2018}. Chaaban et al. \cite{RN_Chaaban2021_combining} used elaborated features extracted from IMU data and a linear regression model to estimate the vGRF and KEM during landing tasks. Their vGRF and KEM estimation accuracy ($R^2$) are $0.83\pm0.01$ and $0.64\pm0.01$, respectively. Although the vGRF estimate accuracy is promising, the KEM estimation accuracy is significantly less than that of the modular LSTM model ($0.84 \pm 0.12$). This is because LSTM can handle the nonlinear relationship between IMU data (accelerations and angular velocities) and the KEM. 
+%  \end{revised}
+%}
+%
+%
+%
+%\RC 2. The other issue with the Introduction is the need for a real-time algorithm. The need is not discussed or explained. Are there applications that require real-time? If so, please give examples or cite appropriate literature.
+%
+%
+%
+%\AR The real-time feature enables the estimation algorithm to be applied not only to the drop landing tasks in the laboratory but also the movements of daily sports. Real-time estimation of biomechanical variables is vital for retraining programs, clinical gait rehabilitation, early diagnosis of neurological diseases, and active assistive devices at knee \cite{RN_gait_retain_Richards2018, RN_realtime_gait_detections, RN_realtime_gait_phase_Wu2022, RN_Zhang2020_assistive_devices}. In retraining programs, it is necessary to have real-time biofeedback to the user \cite{RN_gait_retain_Richards2018}. Retraining algorithms can output suitable biofeedback signals online according to the real-time estimated variable values. In gait analysis applications of movements including landings, real-time estimation of gait parameters is essential for gait rehabilitation and early diagnosis of neurological diseases \cite{RN_realtime_gait_detections, RN_realtime_gait_phase_Wu2022}. Thus, the real-time feature is necessary for the estimation model to enable the developed estimation algorithm with extensive applicability.
+%
+%We have added this information in the Introduction section of the revised manuscript as below:
+%
+%\Copy{intro_real_time}{
+%  \begin{revised}[Introduction]
+%    Real-time estimation of biomechanical variables can be used to generate biofeedback, which is essential for retraining programs as they enable subjects to recognize their landing abnormalities through real-time feedback and make conscious corrections immediately \cite{RN_gait_retain_Richards2018, RN_realtime_gait_detections, RN_realtime_gait_phase_Wu2022}. Also, a real-time estimation can be potentially used in the control of active assistive devices on knee joints \cite{RN_Zhang2020_assistive_devices}.
+%  \end{revised}
+%}
+%
+%
+%
+%\RGC Methods
+%
+%\RC The data processing section talks about use of filters, but it is not clear whether you low/high/band pass filter it.
+%
+%\AR The filters mentioned in the data processing section are low-pass filters. We have supplied this information in the revised manuscript as below:
+%
+%\begin{revised}[Methods]
+%  "a zero-lag second-order low-pass Butterworth filter"
+%\end{revised}
+%
+%
+%\RC Fig 1: 'normalization' instead of nornalization
+%
+%\AR We have corrected this spelling error in the revised manuscript.
+%
+%
+%\RGC Results
+%
+%\RC Figures 8 and 9 have different colors for the box plot. But the color doesnt add additional information to the reader. All box plots could be the same color.
+%
+%\AR We have changed the bar colors to use the same color in the revised manuscript as follows:
+%
+%\Copy{res_fig_8}{
+%  \begin{revised}[Results]
+%    \begin{figure}[htbp]
+%      \centering
+%      \includegraphics[width=0.8\linewidth]{Fig_8_exp_results_IMU_number}
+%      \caption{The vGRF estimation accuracy ($R^2$) of the right leg during double-leg drop landing under the model with the eight different IMU numbers. The lines and triangle points inside the boxes represent the median and mean of the accuracy, respectively. ns indicates no statistically significant difference. * denotes significant differences with p-value $\le 0.05$. The IMU numbers were incrementally sorted according to the mean and median accuracy in the figure, so only adjacent conditions were needed to do the test.}
+%      \label{fig:fig_exp_results_imu_number}
+%    \end{figure}
+%  \end{revised}
+%}
+%
+%\Copy{res_fig_9}{
+%  \begin{revised}[Results]
+%    \begin{figure}[htbp]
+%      \centering
+%      \includegraphics[width=0.8\linewidth]{Fig_9_exp_results_single_IMU}
+%      \caption{The vGRF estimation accuracy of the right leg during double-leg drop landing under the model with an IMU placed on the eight IMU locations: right foot (RF), right shank (RS), right thigh (RT), waist, chest, left foot (LF), left shank (LS), and left thigh (LT). The lines and triangle points inside the boxes represent the median and mean accuracy, respectively. ns indicates no statistically significant difference. * denotes significant differences with p-value $\le 0.05$. The IMU locations were incrementally sorted according to the mean and median accuracy in the figure, so only adjacent conditions were needed to do the test.}
+%      \label{fig:fig_exp_results_single_imu}
+%    \end{figure}
+%  \end{revised}
+%}
+%
+%\RC The term IMU configuration priority is very briefly mentioned and its not clear why this was introduced and if it is useful for the reader?
+%
+%\AR The term IMU configuration priority was introduced to assess the investigated IMU configuration strategies. Each strategy represents a way to place IMUs on segments. There are many placements and combinations for placing a single IMU or multiple IMUs. We introduced IMU configuration priority for each strategy according to the estimation performance. The configuration strategy with high average estimation accuracy and less variance was given a higher priority (less priority value). The strategies with high priority should be utilized first in applications.
+%
+%We have now explained the IMU configuration priority in the revised manuscript as below:
+%
+%\Copy{method_priority}{
+%  \begin{revised}[Methods]
+%    We introduced IMU configuration priority to assess the IMU configuration strategy. An IMU configuration strategy with high average estimation accuracy and less variance was given a higher priority (less priority value). The strategy with high priority should be the first scheme in applications.
+%  \end{revised}
+%}
+%
+%\RC Why are the significant differences only estimated between the adjacent conditions and not across all conditions?
+%
+%
+%\AR Before statistical significance testing, we sorted the conditions according to their average estimation accuracy. The mean or median accuracy of the conditions is increased from the left to right side. Then we only need to compare the adjacent conditions to reduce the test process and make the figure concise. 
+%
+%We have added an explanation of the statistical significance testing in the revised manuscript below:
+%
+%\Copy{method_test}{
+%  \begin{revised}[Methods]
+%    The IMU numbers were incrementally sorted according to the mean and median accuracy in the figure so that only adjacent conditions were needed to do the test.
+%  \end{revised}
+%}
+%
+%
+%\begin{revised}[Methods] % no need copy
+%   The IMU locations were incrementally sorted according to the mean and median accuracy in the figure, so only adjacent conditions were needed to do the test.
+%\end{revised}
+%
+%\RGC Discussion
+%
+%\RC The limitations of the study are mentioned well. However, discuss how they influence your results and how they should be addressed in the future study?
+%
+%\AR We have now discussed the influence and future study of the limitations in the revised manuscript as follows:
+%
+%\Copy{disc_limitations}{
+%
+%  \begin{revised}[Discussion]
+%    These promising results should be interpreted in the context of several limitations associated with the study. First, this work only explored the estimation of the vGRF and KEM without considering the other dimensions: anterior-posterior and medio-lateral GRFs, knee joint abduction moments, and knee joint internal rotation moments. Estimating the lateral components of the GRF is a critical aspect when using a single-IMU approach \cite{RN_Ancillao2018_indirect_measurement_grf}. To generalize the estimation model in more variables, the proposed modular LSTM model should be trained to predict the different dimensions of a variable in future work. Second, the model has relatively large estimation errors of the peak values (\autoref{fig:fig_exp_results_curves}). This is because the variables have abrupt changes in peak points, making it relatively difficult to map the peak values than other parts. Accurately estimating the peak values is a pivot for the ACL injury risk factor assessment because the peak values normally are ACL injury risk factors. Therefore, in future work, we plan to reduce the peak value estimation errors by adding constricted conditions, such as giving higher weights to the peak value loss when training the model and setting the peak value range for the estimation. Last, the dataset was collected from male subjects without musculoskeletal disease history. It is unclear whether the model trained by the dataset can still be valid on female subjects as well as individuals experiencing ACL reconstruction. For instance, athletes who have experienced ACL reconstruction need practical ACL risk assessment more since functional testing is needed to determine if a patient is ready to return to sports \cite{RN_Wilk2015_ACL_injury}. To extend the applicability of the proposed model, collecting dataset from different populations are needed in the following study. 
+%  \end{revised}
+%}
+%
+%
+%\section{Reviewer \#2}
+%
+%\RGC Comments to the Corresponding Author
+%
+%\RGC The authors proposed an LSTM-based model to estimate the vertical GRF and knee moment during drop landings using IMUs on body segments. Experimental validation was conducted to examine the accuracy of estimation. The performance of using a different number of IMUs was also explored. Overall, the study is complete, and the presentation of the manuscript is clear. However, these are some issues that need to be addressed with a revision to the current paper.
+%General comments:
+%
+%\RC 1. The authors mentioned that a major contribution of this work compared with current approaches is the ability to run in real-time. But the methods (Sec. II-A) seem to be offline. The execution time in Fig. 7 is very close to 10 ms. on a PC (btw, how many cores were used?), even using a low number of LSTM units. Taking into other time costs such as communication with multiple IMUs, is it truly possible to run in real-time?
+%
+%\AR We reply to this comment including three points as below:
+%
+%\begin{itemize}
+%  \item Although we performed the model training and evaluation after we had conducted the drop landing experiments, the training and evaluation were conducted in a simulated real-time running scenario. IMU data was fed to the model frame by frame, and the model outputted the estimation on each frame. The real-time feature results from the model continuously estimating the target variable (i.e., vGRF or KEM) on every frame moment. The inputs to the model are only the current and previous three frames (if having) of IMU data instead of the whole period ROI of IMU data. The model was designed to use only the current and a few history IMU data (three frames) so that the model can run online with less computation and time-saving, thereby achieving real-time estimation. 
+%
+%  \item Only a single CPU core was used to evaluate the trained model when monitoring the execution time since the estimation was run in a process.
+%
+%  \item The time cost of communication with multiple IMUs is also an important stage in real-time estimation. In our experiments, the eight IMUs had a sampling frequency of 100 Hz and sent their data to a computer without package loss simultaneously. (Higher sample frequency would lead to package loss.) Thus, there was a 10 ms delay in the data collection and transport stage. The model can conduct the computation within 10 ms simultaneously. Thus the estimation can update at a frequency of 100 Hz. From the aspect of the delay, there was a maximum 20 ms delay (the time cost of a frame of data communication and model computation) in a real-time estimation application. Although the delay is large, it would be acceptable for real-time applications because the time difference between two successive landing movements is larger than 20 ms in real scenarios. 
+%
+%%In the paper, we monitored the time-cost of model computation when the model ran on a PC and used a process attached to one logical CPU core. 
+%\end{itemize}
+%
+%To clarify the execution time of the model clearly, we have revised our description in the Methods and Discussion sections in the revised manuscript as below:
+%
+%\Copy{res_execution_time}{
+%  \begin{revised}[Methods]
+%    More LSTM units complicated the model and increased the time complexity of the model. The computation time of each estimation frame increased with the increase of LSTM units (\autoref{fig:fig_exp_results_execution_time}). Note that the time cost did not include data collection and transmission of the eight IMUs. We examined the execution time of the model when estimating the vGRF of the right leg with five IMUs during a double-leg drop landings. The estimation was executed on a personal computer (Intel(R) Xeon(R) CPU E5-2678 v3 @2.5 GHz and 8GB DDRAM) using only a single CPU core for the computation. The execution time of estimation per frame is raised slightly when using more LSTM units. The average execution time per frame was less than 10 ms. It indicated that the model can estimate the target variables in real time by using the wearable IMU having a 100 Hz sampling frequency on the personal computer without using GPU.
+%  \end{revised}
+%}
+%
+%\Copy{dis_execution_time}{
+%  \begin{revised}[Discussion]
+%    The proposed model, using eight IMUs, can update at a frequency of 100 Hz in real-time applications. In the experiments, the eight IMUs had a sampling frequency of 100 Hz and sent their data to a computer without package loss simultaneously. Also, the execution time per frame of estimation could be less than 10 ms on a personal computer. From the aspect of delay, considering the time delay in the data collection and transport of the eight IMUs, the estimation had a maximum 20 ms delay (the time cost of a frame of data communication and model computation). Although the delay is large, it would be acceptable for real-time application because there is more than 20 ms between two successive landings. 
+%  \end{revised}
+%}
+%
+%
+%
+%\RC 2. Is the accuracy of this work comparable to related work? This should be discussed to show the performance of the work. In the "Estimation Accuracy" section of the Discussion, it seems that only some results and numbers are repeated while no direct comparison is presented. Does the proposed method give better results in terms of the curves or peak values?
+%
+%\AR We have compared the estimation accuracy of the work with other existing methods in the Results section and discussed the estimation accuracy with other works in the Discussion section of the revised manuscript. The proposed method outperforms the other works in the overview of the estimation accuracy.
+%
+%The revised content in the revised manuscript can be seen in below:
+%
+%\Paste{results_comp}
+%\Paste{diss_comp}
+%
+%
+%
+%
+%
+%
+%
+%\RC 3. The authors used a drop landing event detection module to identify the ROI. Is this module able to run in real time? Since it is based on simple thresholds, would the sensor noise affect it? What does the "subject's acceleration" (page 2) mean? Which IMUs did the author use?
+%
+%\AR Our reply to this comment is listed below:
+%
+%\begin{itemize}
+%
+%  \item The landing event detection module can run in real time because the module detects the ROI only using the current frame of acceleration changes.
+%
+%  \item The sensor noise could shift the detected start, landing, and end moments of the ROI, thereby offsetting the detected ROI. Although the ROI could be offset over time due to sensor noise, the actual landing moment must be included in the ROI except for an extreme situation where the noise value is half of the gravity magnitude. The purpose of defining the ROI is to track the actual landing moment (landing event). The landing moment and its near neighborhood would include the largest impact loading on the human body. To grasp the actual landing moment, we defined the ROI which is a period with start and end moments. The start moment was determined by a threshold with large tolerance so that the landing moment was inside the ROI.
+%
+%  \item The phrase of "subject's acceleration" means the body acceleration of a subject during drop landing. We have changed the expression in the revised manuscript to clarify the meaning clearly.
+%
+%  \item The IMU attached to the chest was generally used to identify ROI. For the cases with only one IMU, that IMU was also used in ROI identification.
+%
+%  \item The IMUs were MTw from Xsens Technologies.
+%
+%\end{itemize}
+%
+%We have added the above information in the revised manuscript below:
+%
+%\Copy{method_ROI_real_time}{
+%  \begin{revised}[Methods]
+%    The drop landing event detection module can real-time monitor the changes in the acceleration magnitude of an IMU (i.e., placed on the chest) to automatically identify the beginning and end moment of the ROI (\ref{equ:equ_1}).
+%  \end{revised}
+%}
+%
+%\Copy{method_ROI_sensor_noise}{
+%  \begin{revised}[Methods]
+%   Noise of acceleration could shift the detected start, landing, and end moments of the ROI, thereby offsetting the detected ROI. Even though the actual landing moment must be included in the ROI since the threshold coefficients ($\alpha$ and $\beta$) make the ROI enough tolerance for the noise.
+%  \end{revised}
+%}
+%
+%\begin{revised}[Methods] % no need copy
+%  using the acceleration of a subject's body
+%\end{revised}
+%
+%
+%\Copy{method_xsen}{
+%\begin{revised}[Methods]
+%  The IMUs were MTw from Xsens Technologies.
+%\end{revised}
+%}
+%
+%
+%
+%\RC 4. The experiment involved drop landing in different toe directions. Would this change KEM in the sagittal plane? Would it be better to change stool height or anterior-posterior position to change KEM? More importantly, can this learning-based model be generalized for such conditions different from the experiment settings (e.g. height, position)?
+%
+%\AR The KEM decreased when toe direction changed from toe-in to toe-out. We did not collect the dataset from the conditions with different experiment settings. Thus, we could not verify whether the model is generalized for the conditions with different experiment settings. To extend the model's generalization in these conditions, we would collect the dataset and assess the model under the different experimental settings in future work. 
+%
+%We have discussed this in the revised manuscript below:
+%
+%
+%\Copy{disc_experiment_setup}{
+%  \begin{revised}[Discussion]
+%    Apart from varied landing manners (toe direction), the experiment settings (landing height and distance, \autoref{fig:fig_exp_setup_markers_imus} (a)) also influence the KEM of the landings. To extend the generalization of the model in different landing height and distance, the subsequent work is to collect the dataset and assess the model under the different experiment settings. 
+%  \end{revised}
+%}
+%
+%
+%
+%\RC 5. The proposed method achieved a correlation lower than 0.9 even with all the IMUs. Is this result satisfying? In other words, is the accuracy enough for any targeted application scenarios according to the literature? For example, is it possible to differentiate the toe directions in this experiment based on the estimations?
+%
+%\AR We referenced similar algorithm development \cite{RN_Chaaban2021_combining,RN_wearable_solution_Matijevich2021}, which defined $R^{2} > 0.80$ as high algorithm accuracy. The toe direction angles have a relationship with the KEM. It is necessary to know the relationship for identifying the toe direction of a landing with its estimated KEM. However, the relationship exceeds the study of this paper. It could be a work of estimation applications in future work. 
+%
+%
+%We have added this information in the revised manuscript below:
+%
+%\Copy{method_R2_refer}{
+%  \begin{revised}[Methods]
+%    We referenced similar algorithm development \cite{RN_Chaaban2021_combining,RN_wearable_solution_Matijevich2021}, which defined $R^{2} > 0.80$ as high algorithm accuracy. $R^2$ was mainly used in the investigation of different IMU configurations and LSTM unit numbers. In the summary of the results, the RMSE and rRMSE were used to demonstrate the performance of the models.
+%
+%  \end{revised}
+%}
+%
+%
+%
+%\RC 6. The language and writing of the work need to be enhanced. Some sentences are too long and could be hard to follow for the readers. Grammatical errors also exist and should be thoroughly corrected and double-checked. 
+%
+%\AR We have proofread the manuscript thoroughly and double-checked the language. The main paper test has also been checked and corrected by a professional English grammar editor.
+%
+%
+%
+%
+%\RGC Line specific comments:
+%
+%\RGC Abstract:
+%
+%\RC Lines 9-12: Please rewrite these fragments as a complete sentence.
+%
+%\AR We have rewritten these fragments in the revised manuscript as below:
+%
+%\Copy{abs_obj}{
+%  \begin{revised}[Abstract]
+%    Objective: This work investigates the real-time estimation of vertical ground reaction force (vGRF) and external knee extension moment (KEM) during single- and double-leg drop landings via wearable inertial measurement units (IMUs) and machine learning. 
+%  \end{revised}
+%}
+%
+%
+%\RC Lines 10: By saying "external knee extension moment", are the authors indicating that the joint moment is only from external forces (GRF)?
+%
+%\AR We do not mean the joint moment is only from external forces. Here, the term "external knee moment" indicates the joint moment produced by external forces (i.e., ground reaction force and gravity) acting on the knee joint-related bones (i.e., tibia and femur) rather than produced by the muscle-tendon and ligament. In this study, we only estimate the external knee extension moment since the ground truth of the external knee extension moment can be obtained by Vicon and Visual3D. To eliminate misunderstanding of the "external knee extension moment", we added a comment in the revised manuscript as below:
+%
+%\Copy{external_KEM}{
+%  \begin{revised}[Introduction]
+%    Vertical GRF (vGRF) and external knee extension moment (KEM, produced by external forces (i.e., GRF and gravity)) during landing tasks are crucial biomechanical indicators of non-contact anterior cruciate ligament (ACL) injury risk \cite{RN_Wang2011, RN_Shimokochi2013_changing_sagittal, RN_Liederbach2014_comparison_of_landing}.
+%  \end{revised}
+%}
+%
+%
+%\RGC Introduction:
+%
+%\RC Page1, Lines 40: should be ``motion capture system''.
+%
+%\AR We have corrected it in the revised manuscript below:
+%
+%\Copy{intro_motion_capture}{% no need to paste
+%  \begin{revised}[Introduction]
+%    optical motion capture system
+%  \end{revised}
+%}
+%
+%
+%\RC Page1, Lines 39-44: This sentence is too long and could be difficult to follow.
+%
+%\AR We have split the sentence into two short sentences in the revised manuscript as below:
+%
+%\Copy{intro_short_sentence}{
+%  \begin{revised}[Introduction]
+%    vGRF and KEM are typically measured in specialized laboratories using optical motion capture systems and force plates. This traditional measurement method is expensive and complex. It also limits widespread and in-field ACL-related implementations/applications, such as ACL-injury risk screening, intervention training for ACL-injury risk reduction, and real-time control of active assistive devices on the knee \cite{RN_realtime_gait_detections, RN_Zhang2020_assistive_devices}.
+%  \end{revised}
+%}
+%
+%
+%\RC Page1, Line 11: The authors propose that the models need to be specifically tailored to capture landing characteristics. But it seems that the LSTM model in this work also stacks IMU raw data from multiple frames. What is the major difference from models in other work?
+%
+%
+%\AR To handle the specific characteristics, larger impact, short-term, and non-period of drop landing, the proposed model has several features which are different from the existing estimation models \cite{RN_LeBlanc2021_GRF_estimation, RN_Eguchi_estimation_vGRF, RN_Renstrom2008, RN_Refai2020_estimation_3d_grf, RN_Stetter2020_machinelearning}. First, the model can run in real time. The inputs to the model are only the current and previous three frames of IMU data instead of the whole period ROI of IMU data. The model was designed to use only the current and a few history IMU data (three frames) so that the model can run online with less computation and time-saving, thereby achieving real-time estimation. Second, our model is modularity, which uses different sub-deep neural networks to estimate different variables (vGRF and KEM of single- and double-leg drop landings). This way allows users can utilize fewer computation resources to calculate required variables online.
+%
+%We have strengthened the difference in the revised manuscript as below:
+%
+%\Copy{disc_realtime_modular}{
+%  \begin{revised}[Discussion]
+%
+%    To handle the specific characteristics, larger impact, short-term, and non-period of drop landing, the proposed model has two features, modularity and real time, which are different from the existing estimation models \cite{RN_LeBlanc2021_GRF_estimation, RN_Eguchi_estimation_vGRF, RN_Renstrom2008, RN_Refai2020_estimation_3d_grf, RN_Stetter2020_machinelearning}. First, the model is modular and can be flexibly set to apply in different estimation applications. The existing research utilized a large and complex neural network with fixed multiple output channels to predict multiple target variables \cite{RN_Chaaban2021_combining, RN_Stetter2020_machinelearning, RN_Cerfoglio2021_machine_learning_estimation}. Instead, this work utilized several identical small neural networks to flexibly configure the estimation model as needed (\autoref{fig:fig_model_define}). The model can output more variables by adding and training more sub-networks. We have collected the necessary dataset for training the model to predict the lower extremity biomechanics of drop landing, including 3D angles and moments of the ankle, knee, and hip joints. The dataset and code can be accessed at \url{https://gitlab.com/sunzhon/realtime_drop_landing_estimation.git}. The feature allows the model to be a flexible estimation module for different in-filed applications, such as ACL risk factor screening \cite{RN_Padua2015_landing_error}, assistive device monitoring and control \cite{RN_Vargas2021_knee_monitor, RN_Zhang2020_assistive_devices}, since they may require different estimations. The modularity enables the model to have a small size and to require relatively low computation. Second, the model can run in real time. The model was designed to use only the current and a few history IMU data (three frames) so that the model ran online with less computation and time-saving, thereby achieving real-time estimation.
+%
+%  \end{revised}
+%}
+%
+%%%This feature is important for real-time estimation in in-field and portable applications with limited computational resources. 
+%
+%
+%\RC Page1, Lines 39: may revise into ``including the inability to predict…''
+%
+%\AR We have modified the phrase in the revised manuscript as:
+%
+%\begin{revised}[Introduction] % no need copy
+%  inability
+%\end{revised}
+%
+%
+%
+%\RC Page1, Lines 49: the expression ``other body segment IMUs'' should be revised.
+%
+%\AR We have revised the expression in the revised manuscript below:
+%
+%\begin{revised}[Introduction] % no need copy
+%  the IMUs placed on other body segments
+%\end{revised}
+%
+%
+%\RGC Methods
+%
+%\RC Page2, Lines 47: should be "the IMU data are…"
+%
+%\AR We have corrected the expression in the revised manuscript as followings:
+%
+%\begin{revised}[Mothods] % no need copy
+%  the IMU data are.
+%\end{revised}
+%
+%
+%\RC Page2, Lines 49-53: The landing event is inside of the ROI according to Fig. 2. The text description is not consistent with the figure. The end moment is obviously not at the landing moment.
+%
+%\AR The ROI was introduced to capture the landing moments and its neighborhood. The ROI has three important moments: start, landing, and end moments. The start and end moments define the period of ROI, which include the landing moment inside. 
+%
+%We have added more explanation of the ROI in the revised manuscript below:
+%
+%
+%
+%\Copy{method_ROI_define_add}{
+%  \begin{revised}[Methods]
+%    The start and end moments define the period of ROI, which includes the landing moment inside.
+%  \end{revised}
+%}
+%
+%
+%\RC Page4, Lines 26: How was the synchronization achieved?
+%
+%\AR The optical motion capture system, force plates, and IMU system have sync ports, which can be connected by RCA sync cable so that the three systems can be started to record data at the same time.
+%
+%In detail, the optical motion capture system has a device called Lock that has several sync ports to transmit trigger signals to 3rd party devices (i.e., AMTI force plates and Xsen IMUs). The force plate system has an AMTI Optima Amplifier. The amplifier has a sync port that can receive sync signals. The IMU system of Xsen also has a station with a sync port. In the experiment, Lock's output-sync ports are connected to AMTI Optima Amplifier's input-sync port and IMU station's input-sync, set up in the three systems' software to make them into ready states. Once the Vicon system is turned on to record data, it sends trigger signals through the sync port to force plate and IMU systems to start recording data from their ready states. 
+%
+%We have described the synchronization in the revised manuscript below:
+%
+%\Copy{method_sync}{
+%\begin{revised}[Methods]
+%The measurements of the optical motion capture system, force plates, and IMU system were synchronized via RCA sync cables which connected the three systems to start recording data simultaneously.
+%\end{revised}
+%}
+%\RGC Results:
+%
+%\RC Fig. 5: The error is not clear from these plots. It is unclear whether the largest error occurs at peaks.
+%
+%\AR Fig.5 was used to show the actual and estimated target variables' profiles and their fitting. The statistical metrics of RMSE and rRMSE in Table 1 demonstrated the estimation error. The largest error occurs at peaks. This is because the variables have abrupt changes in peak points. It is relatively difficult to map the sudden changes for the model. Thus, the estimated peak values have large difference with the actual peak values.
+%
+%We have discussed the errors in the Discussion section of the revised manuscript below:
+%
+%\begin{revised}[Discussion] % no need copy
+%Second, the model has relatively large estimation errors of the peak values (Fig. 5). This is because the variables have abrupt changes in peak points, making it relatively difficult to map the peak values. Accurately estimating the peak values is a pivot for the ACL injury risk factor assessment because the peak values normally are ACL injury risk factors. Therefore, in future work, we plan to reduce the peak value estimation errors by adding constricted conditions, such as giving higher weights to the peak value loss when training the model and setting the peak value range for the estimation.
+%\end{revised}
+%
+%
+%
+%\RGC Discussion:
+%
+%\RC Page7, Lines 48-51: The correlation coefficients are not percentages. The description should be revised.
+%
+%\AR We have corrected the expressions in the revised manuscript as below:
+%
+%\Copy{dis_estimation_accuracy}{
+%\begin{revised}[Discussion]
+%  After excluding outliers, for instance, the vGRF estimation of the model with optimal IMU configurations had a great performance during single-leg drop landing, half of the trials had an accuracy of more than 0.93 (RMSE and rRMSE were less than 0.21 BW and 0.06, respectively), and a quarter of the trials had an accuracy of about 0.96 (RMSE and rRMSE were less than 0.17 BW and 0.05, respectively) (\autoref{tab:tab_overall_accuracy_all_cases}).
+%\end{revised}
+%}
+%
+%\RGC References:
+%
+%\RC The format of publication names is not consistent. Please check the journal requirement on the reference styles.
+%
+%\AR We have rechecked the reference to make sure the publication with consistent format according to JBHI requirements on reference styles.
+%
+%
+%\section{Reviewer \#3}
+%
+%\RGC Comments to the Corresponding Author. The purpose of this work was to estimate vGRF and KEM during single and double leg drop landings using a modular LSTM-based model in real time. The model was built to optimally select IMU configurations and LSTM unit numbers. Results are promising however accuracy interpretation for biomechanics/clinical purpose could be improved. The work should "contribute to widespread clinical tests for non-contact ACL injury-risk screening, evaluation of training interventions in daily-life sport, and active control of knee assistive devices "The objectives are clearly stated, and the distinction with existing and related work is made in the introduction part of the paper. Methodologically, the paper is easy to follow due to good structuring and only few questions remain open (see below). Results are presented in an appropriate manner even though I would suggest shifting the focus from accuracy perspective also on acting forces and moments (RMSE) for clinical interpretability. The modelling approach and optimization for fewer IMUs seems promising. Results are discussed appropriately, however no comparison of results with the existing literature is carried out.
+%
+%\RGC Minor:
+%
+%\RGC Methods:
+%
+%\RC P.3 L16 missing verb? Or connection to previous sentence unclear. "Low-level operations in TensorFlow (version 2.5.0), which interfaced with Keras."
+%
+%\AR We have corrected this language issue in the sentence by supplying the missed verb. The revised sentence is as below:
+%
+%\Copy{method_keras}{
+%\begin{revised}[Methods]
+%Low-level operations were in TensorFlow (version 2.5.0), which interfaced with Keras.
+%\end{revised}
+%}
+%
+%
+%
+%
+%\RGC P.4 L 22ff toe direction
+%
+%\RC • Double leg drop landing: Was the toe direction measured? How did you ensure comparability or variability between subjects?
+%
+%\AR The toe direction angles were measured indirectly in the data process stage. It is unnecessary to compare or vary toe direction angles between subjects in this study. 
+%
+%In detail, every subject's full-body biomechanical models were built by Visual3D based on the data measured by the optical motion capture system (Vicon) and force plate (ATMI). The toe direction angles of each subject in each drop landing trial can be easily obtained from their own full-body biomechanical models. 
+%
+%Before conducting double-leg drop landing tasks, the subjects were told to classify their toe direction into five classes. During experiments, the subjects were asked to increase their toe direction angle after every five trials (30 trials in total) from their acceptable toe-in to the toe-out range. It is not necessary to keep the toe direction angle to specific values. Each subject may show different toe direction angles. The aim of asking for different toe direction angles is to allow the collected dataset with higher variance in order to improve the trained deep learning model with higher fitting ability.
+%
+%We have added this information in the revised manuscript below:
+%
+%\Copy{method_toe_direc}{
+%\begin{revised}[Methods]
+%The aim of varying the toe direction was to produce various landing kinetics so that the collected dataset was general.
+%\end{revised}
+%}
+%
+%
+%\RC • Why was there no variability in single-leg drop landings? as these are more dangerous for ACL ruptures (as described in the Introduction) --> might be too dangerous to perform in lab.
+%
+%\AR There are two reasons why there was no variability in single-leg drop landings. First, controlling the toe direction angles during a single-leg drop landings is not easy for subjects. Second, it is true that there are more dangers for ACL, especially in changing the direction. From the aspect of safe for subjects, we did not ask subjects to change their toe direction angles during single-leg drop landings.
+%
+%We have explained the reason in the revised manuscript below:
+%
+%\Copy{method_toe_direc_single}{
+%\begin{revised}[Methods]
+%From the aspect of safe for subjects, the subjects were not asked to manipulate the toe direction during single-leg drop landings.
+%\end{revised}
+%}
+%
+%\RGC P. 5 L.8 larger
+%Results:
+%
+%\RC • add explanation of BW to the tables and figures
+%
+%\AR BW denotes the body weight (kg), and BH denotes the body height (m). To reduce the influence of subjects' body weight and height, each subject's vGRF was normalized by body weight (BW). The KEM was normalized by the multiplication of body weight and body height (BH). We have added the explanation to the tables and figures in the revised manuscript. Also, an explanation sentence was also added in the revised manuscript below:
+%
+%\Copy{explanation_BW}{
+%\begin{revised}[Methods]
+%  To reduce the influence of varied subjects' weights and heights on model training and performance assessment, the vGRF and KEM were normalized. The vGRF was divided by the body weight (BW), while the KEM was divided by the multiplication of BW and body height (BH). 
+%\end{revised}
+%}
+%
+%\Copy{explanation_BW_table}{
+%\begin{revised}[Results]
+%The units of RMSE for vGRF and KEM were BW and $\text{BW}\cdot\text{BH}$, respectively.
+%\end{revised}
+%}
+%
+%
+%\RC • Table1: It would have been interesting to see also non optimized results in comparison. How much gain is achieved with the optimization?
+%
+%\AR We have listed the results of the non optimized IMU configurations in Table 2 of the revised manuscript. Compared to the non optimized results, the optimal IMU configurations improved the estimation accuracy.
+%
+%
+%\Copy{result_imu_config_optim}{
+%\begin{revised}[Results]
+%Compared to the non-optimized IMU configurations, the model with optimal IMU configurations show greater estimation accuracy (Tables \ref{tab:tab_overall_accuracy_all_cases} and \ref{tab:tab_non_optimize}).
+%\end{revised}
+%}
+%
+%\begin{revised}[Results]% no need copy
+%
+%\begin{table}[htbp]
+%  \centering
+%  \caption{\textcolor{red}{Estimation performance of the right leg for the vGRF and KEM without optimized IMU configurations during single- and double-leg drop landings. The units of RMSE for vGRF and KEM were BW and $\text{BW}\cdot\text{BH}$, respectively.
+%}}
+%
+%  \label{tab:tab_2}
+%  %\resizebox{0.5\linewidth}{!}{%
+%    \begin{tabular}{@{}cccccccc@{}}
+%      \toprule
+%      Variables & Metrics & Mean & Min & 25\% & 50\% & 75\% & Max \\ \midrule
+%
+%       & $R^{2}$ & $0.86\pm 0.12$ & 0.30 & 0.85 & 0.91 & 0.94 & 0.98 \\
+%  Single-leg vGRF   & rRMSE & $0.08\pm 0.03$ & 0.03 & 0.06 & 0.07 & 0.09 & 0.20 \\
+%      & RMSE & $0.28\pm 0.13$ & 0.11 & 0.20 & 0.24 & 0.32 & 0.81 \\
+%
+%       & $R^{2}$ & $0.81\pm 0.14$ & 0.20 & 0.75 & 0.86 & 0.91 & 0.98 \\
+%  Single-leg KEM    & rRMSE & $0.11\pm 0.04$ & 0.04 & 0.08 & 0.11 & 0.13 & 0.25 \\
+%      & RMSE & $0.58\pm 0.18$ & 0.20 & 0.45 & 0.54 & 0.70 & 1.23 \\
+%
+%       & $R^{2}$ & $0.79\pm 0.14$ & 0.20 & 0.71 & 0.83 & 0.90 & 0.99 \\
+% Double-leg vGRF    & rRMSE & $0.11\pm 0.06$ & 0.03 & 0.07 & 0.09 & 0.13 & 0.37 \\
+%      & RMSE & $0.28\pm 0.07$ & 0.06 & 0.22 & 0.27 & 0.32 & 0.57 \\
+%
+%       & $R^{2}$ & $0.82\pm 0.14$ & 0.20 & 0.75 & 0.86 & 0.92 & 0.98 \\
+% Double-leg KEM  & rRMSE & $0.11\pm 0.04$ & 0.04 & 0.08 & 0.10 & 0.13 & 0.28 \\
+%      & RMSE & $0.40\pm 0.11$ & 0.16 & 0.32 & 0.40 & 0.47 & 0.79 \\ \bottomrule
+%    \end{tabular}
+%  %}
+%\end{table}
+%
+%\end{revised}
+%
+%
+%
+%\RC • Thinking of potential ACL ruptures, which is indicated several times throughout the work, I would assume the focus should be more on acting forces and moments (RMSE) and not on accuracy measurements only. Especially considering that the peak performance estimate is limited as indicated in the work.
+%
+%
+%\AR Apart from $R^2$, RMSE and rRMSE were also used to assess the results. $R^2$ was mainly used in the investigation of different IMU configurations and LSTM unit numbers. In the summary of the results, the RMSE and rRMSE were used to demonstrate the performance of the models in Tables \ref{tab:tab_overall_accuracy_all_cases} and \ref{tab:tab_non_optimize}, and \autoref{fig:fig_exp_results_optimal_sensor_config}. Besides, the RMSE metric has also been discussed for identifying ACL injury risk in the revised manuscript (see the last reply).
+%
+%We have emphasized the RMSE in the revised manuscript below:
+%
+%\Paste{method_R2_refer}
+%
+%\Paste{disc_ACL}
+%
+%\RGC Discussion:
+%
+%\RC • Results are discussed, but no comparison of the results with the existing literature is carried out.
+%
+%\AR We have compared the proposed results with two other existing results in the Results and Discussion sections of the revised manuscript below:
+%
+%\Paste{results_comp}
+%
+%\Paste{diss_comp}
+%
+%
+%
+%\RC • I suggest including a quantification of the forces/moments that can cause ACL ruptures (what multiple of force in body weight?) and indicate if the deviation from the model is acceptable for real-world applications.
+%
+%
+%
+%
+%\AR Thanks for this suggestion. We did a literature survey and found that Lipps et al. \cite{RN_ACL_Lipps2013} reported that the human knee could only withstand a load of about 4 BW within a short period before the ACL failed. The estimated vGRFs in our study were below the risky area. Lin et al. \cite{RN_ACL_lin2012biomechanical} performed a computer simulation study to compare lower extremity kinetics between trials with and without non-contact ACL injuries. They found that the mean vGRF difference between injured and uninjured male subjects was 0.95 BW. In our study, the estimated vGRF accuracy in Single-leg drop landing is $0.25 \pm 0.13$ BW. Thus, the limit of agreement (LOA, mean±2SD) of the vGRF is $-0.01 \sim 0.51$. In double-leg drop landing, the LOA of the vGRF is $0.06 \sim 0.3$ BW. The LOAs of vGRF are smaller than $0.95$ BW. Thus, the presented model has the potential to detect this difference with reasonable probability.
+%
+%
+%
+%We have also added this information in the revised manuscript as below:
+%
+%\Copy{disc_ACL}{
+%  \begin{revised}[Discussion]
+%
+%    Lipps et al. \cite{RN_ACL_Lipps2013} reported that the human knee could only withstand a load of about 4 BW within a short period before the ACL failed. The estimated vGRFs in our study were below the risky area. Lin et al. \cite{RN_ACL_lin2012biomechanical} performed a computer simulation study to compare lower extremity kinetics between trials with and without non-contact ACL injuries. They found that the mean vGRF difference between injured and uninjured male subjects was $0.95$ BW. In our study, the estimated vGRF accuracy in Single-leg drop landing is $0.25 \pm 0.13$ BW. Thus, the limit of agreement (LOA, mean±2SD) of the vGRF is $-0.01 \sim 0.51$. In double-leg drop landing, the LOA of the vGRF is $0.06 \sim 0.3$ BW. The LOAs of vGRF are smaller than 0.95 BW. Thus, the presented model has the potential to detect this difference with reasonable probability.
+%
+%  \end{revised}
+%}
+%
+
+
+%%We believe that the revised manuscript is now appropriate and will be of interest to the broad readership of IEEE Transactions on Cybernetics.
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,./../../References/ref}
+
+
+
+\end{document}
+
+
